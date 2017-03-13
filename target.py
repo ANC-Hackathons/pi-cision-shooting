@@ -4,6 +4,7 @@
 import RPi.GPIO as GPIO
 import Tkinter
 import time
+import datetime
 
 class player_frame(Tkinter.Frame):
   def __init__(self, parent):
@@ -31,12 +32,16 @@ class player_frame(Tkinter.Frame):
 
     self.labelVariable = Tkinter.StringVar()
     label = Tkinter.Label(self, textvariable=self.labelVariable, anchor="w", fg="white", bg="blue")
-    label.grid(column=0, row=0, columnspan=2, sticky='EW')
+    label.grid(column=0, row=0, sticky='EW')
     self.labelVariable.set(self.parent.entryVariable.get())
 
+    self.timer = Tkinter.StringVar()
+    label = Tkinter.Label(self, textvariable=self.timer, padx=10, fg="white", bg="black")
+    label.grid(column=1, row=0, sticky='EW')
+    self.timer.set(u"00:00.000")
+
     self.grid_columnconfigure(0, weight=1)
-    self.grid_columnconfigure(1, weight=1)
-    self.grid_columnconfigure(2, weight=1)
+#    self.grid_columnconfigure(1, weight=1)
 
   def OnStartClock(self):
     start_time = time.time()
@@ -47,6 +52,10 @@ class player_frame(Tkinter.Frame):
           GPIO.input(self.TARGET_4) == GPIO.HIGH:
 
       time.sleep(0.2)
+
+      timeDisplay = datetime.datetime.fromtimestamp(time.time() - start_time).strftime('%M:%S.%f')[:-3]
+      self.timer.set(timeDisplay)
+      self.update()
 
       if GPIO.input(self.TARGET_1):
         print 'target 1 input was HIGH'
