@@ -5,55 +5,65 @@ import RPi.GPIO as GPIO
 import Tkinter
 import time
 
-TARGET_1 = 6
-TARGET_2 = 13
-TARGET_3 = 19
-TARGET_4 = 26
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(TARGET_1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(TARGET_2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(TARGET_3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(TARGET_4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-class player_tk(Tkinter.Tk):
+class player_frame(Tkinter.Frame):
   def __init__(self, parent):
-    Tkinter.Tk.__init__(self, parent) 
+    Tkinter.Frame.__init__(self, parent)
     self.parent = parent
     self.initialize()
 
   def initialize(self):
+
+    self.TARGET_1 = 6
+    self.TARGET_2 = 13
+    self.TARGET_3 = 19
+    self.TARGET_4 = 26
+
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(self.TARGET_1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(self.TARGET_2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(self.TARGET_3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(self.TARGET_4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
     self.grid()
 
     buttonClock = Tkinter.Button(self, text=u"Start Clock", command=self.OnStartClock)
-    buttonClock.grid(column=1, row=1)
+    buttonClock.grid(column=2, row=0)
+
+    self.labelVariable = Tkinter.StringVar()
+    label = Tkinter.Label(self, textvariable=self.labelVariable, anchor="w", fg="white", bg="blue")
+    label.grid(column=0, row=0, columnspan=2, sticky='EW')
+    self.labelVariable.set(self.parent.entryVariable.get())
+
+    self.grid_columnconfigure(0, weight=1)
+    self.grid_columnconfigure(1, weight=1)
+    self.grid_columnconfigure(2, weight=1)
 
   def OnStartClock(self):
     start_time = time.time()
     print 'Started timer'
-    while GPIO.input(TARGET_1) == GPIO.HIGH or \
-          GPIO.input(TARGET_2) == GPIO.HIGH or \
-          GPIO.input(TARGET_3) == GPIO.HIGH or \
-          GPIO.input(TARGET_4) == GPIO.HIGH:
+    while GPIO.input(self.TARGET_1) == GPIO.HIGH or \
+          GPIO.input(self.TARGET_2) == GPIO.HIGH or \
+          GPIO.input(self.TARGET_3) == GPIO.HIGH or \
+          GPIO.input(self.TARGET_4) == GPIO.HIGH:
 
       time.sleep(0.2)
 
-      if GPIO.input(TARGET_1):
+      if GPIO.input(self.TARGET_1):
         print 'target 1 input was HIGH'
       else:
         print 'target 1 input was LOW'
 
-      if GPIO.input(TARGET_2):
+      if GPIO.input(self.TARGET_2):
         print 'target 2 input was HIGH'
       else:
         print 'target 2 input was LOW'
 
-      if GPIO.input(TARGET_3):
+      if GPIO.input(self.TARGET_3):
         print 'target 3 input was HIGH'
       else:
         print 'target 3 input was LOW'
 
-      if GPIO.input(TARGET_4):
+      if GPIO.input(self.TARGET_4):
         print 'target 4 input was HIGH'
       else:
         print 'target 4 input was LOW'
@@ -78,15 +88,10 @@ class app_tk(Tkinter.Tk):
     self.entry.bind("<Return>", self.OnPressEnter)
     self.entryVariable.set(u"Enter text here.")
 
-    self.currentPlayerRow = 2
+    self.currentPlayerRow = 1
 
     buttonName = Tkinter.Button(self, text=u"Add Name", command=self.OnAddName)
     buttonName.grid(column=1, row=0)
-
-    self.labelVariable = Tkinter.StringVar()
-    label = Tkinter.Label(self, textvariable=self.labelVariable, anchor="w", fg="white", bg="blue")
-    label.grid(column=0, row=self.currentPlayerRow, columnspan=2, sticky='EW')
-    self.labelVariable.set(u"Hello !")
 
     self.grid_columnconfigure(0, weight=1)
     self.update()
@@ -95,14 +100,19 @@ class app_tk(Tkinter.Tk):
     self.entry.selection_range(0, Tkinter.END)
 
   def OnAddName(self):
-    self.labelVariable.set(self.entryVariable.get() + " (You clicked the button !)")
+#    self.labelVariable.set(self.entryVariable.get())
     self.entry.focus_set()
     self.entry.selection_range(0, Tkinter.END)
 
+    newPlayerRow = player_frame(self)
+    newPlayerRow.grid(column=0, row=self.currentPlayerRow, sticky='EW')
+    self.currentPlayerRow += 1
+
   def OnPressEnter(self, event):
-    self.labelVariable.set(self.entryVariable.get() + " (You pressed enter !)")
-    self.entry.focus_set()
-    self.entry.selection_range(0, Tkinter.END)
+    self.OnAddName()
+#    self.labelVariable.set(self.entryVariable.get() + " (You pressed enter !)")
+#    self.entry.focus_set()
+#    self.entry.selection_range(0, Tkinter.END)
 
 if __name__ == "__main__":
   app = app_tk(None)
