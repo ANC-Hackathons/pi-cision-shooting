@@ -91,13 +91,14 @@ class app_tk(Tkinter.Tk):
   def initialize(self):
     self.grid()
 
+    self.currentPlayerRow = 1
+    self.currentPlayerNumber = 1
+
     self.entryVariable = Tkinter.StringVar()
     self.entry = Tkinter.Entry(self, textvariable=self.entryVariable)
     self.entry.grid(column=0, row=0, sticky='EW')
     self.entry.bind("<Return>", self.OnPressEnter)
-    self.entryVariable.set(u"Enter text here.")
-
-    self.currentPlayerRow = 1
+    self.entryVariable.set(u"Player " + str(self.currentPlayerNumber))
 
     buttonName = Tkinter.Button(self, text=u"Add Name", command=self.OnAddName)
     buttonName.grid(column=1, row=0)
@@ -110,12 +111,14 @@ class app_tk(Tkinter.Tk):
 
   def OnAddName(self):
 #    self.labelVariable.set(self.entryVariable.get())
-    self.entry.focus_set()
-    self.entry.selection_range(0, Tkinter.END)
-
     newPlayerRow = player_frame(self)
     newPlayerRow.grid(column=0, row=self.currentPlayerRow, sticky='EW')
     self.currentPlayerRow += 1
+    self.currentPlayerNumber += 1
+
+    self.entryVariable.set(u"Player " + str(self.currentPlayerNumber))
+    self.entry.focus_set()
+    self.entry.selection_range(0, Tkinter.END)
 
   def OnPressEnter(self, event):
     self.OnAddName()
@@ -125,7 +128,7 @@ class app_tk(Tkinter.Tk):
 
 if __name__ == "__main__":
   app = app_tk(None)
-  app.title('my application')
+  app.title('Pi-cision Shooting')
   app.mainloop()
 
 #if GPIO.input(TARGET_1):
