@@ -19,12 +19,6 @@ class player_frame(Tkinter.Frame):
     self.TARGET_3 = 19
     self.TARGET_4 = 26
 
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(self.TARGET_1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(self.TARGET_2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(self.TARGET_3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(self.TARGET_4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
     self.grid()
 
     buttonClock = Tkinter.Button(self, text=u"Start Clock", command=self.OnStartClock)
@@ -44,6 +38,12 @@ class player_frame(Tkinter.Frame):
 #    self.grid_columnconfigure(1, weight=1)
 
   def OnStartClock(self):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(self.TARGET_1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(self.TARGET_2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(self.TARGET_3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(self.TARGET_4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
     start_time = time.time()
     print 'Started timer'
     while GPIO.input(self.TARGET_1) == GPIO.HIGH or \
