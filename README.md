@@ -14,3 +14,7 @@ Raspberry Pi powered hockey accuracy shooting competition
 
 ## Run pi-cision-shooting w/ Keyboard
     ./app.sh
+
+## Building the Rig
+
+A full parts list and description of building the rig can be found in [this blog post](https://www.asdfpublishing.com/single-post/2017/04/02/Pi-Day-Inspired-Hacking).
