@@ -26,7 +26,7 @@ From the `scripts` directory run:
 1. Update the paths in `assets/Pi-cisionShooting.desktop` to the location of the cloned repo
 2. Copy the .desktop file to your desktop directory:
 
-    cp assets/Pi-cisionShooting.desktop /home/pi/Desktop
+        cp assets/Pi-cisionShooting.desktop /home/pi/Desktop
 
 ## Building the Rig
 
