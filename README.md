@@ -27,3 +27,7 @@ From the `scripts` directory run:
 2. Copy the .desktop file to your desktop directory:
 
     cp assets/Pi-cisionShooting.desktop /home/pi/Desktop
+
+## Building the Rig
+
+A full parts list and description of building the rig can be found in [this blog post](https://www.asdfpublishing.com/single-post/2017/04/02/Pi-Day-Inspired-Hacking).
