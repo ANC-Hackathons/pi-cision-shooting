@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Pi-cision Shooting
+Comment=Launches the Pi-cision Shooting app with a keyboard
+Icon=UPDATE_WITH_PATH_TO_CLONED_REPO/Ice-Hockey-icon.png
+Exec=lxterminal -t "Starting Pi-cision Shooting" --working-directory=UPDATE_WITH_PATH_TO_CLONED_REPO -e ./app.sh
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=None;
