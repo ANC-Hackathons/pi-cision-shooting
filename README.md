@@ -1,5 +1,5 @@
 # Pi-cision Shooting
-Raspberry Pi powered hockey accuracy shooting competition. Players compete to see who can knock back targets mounted in each corner of a hockey goal the quickest. The GPIO pins on the Raspberry Pi are connected to a [Magnetic Door Switch Set](https://www.sparkfun.com/products/13247) mounted on each target so that it is able to monitor when a target has been hit. A full parts list and a description of the project itself can be found in [this blog post](https://www.asdfpublishing.com/single-post/2017/04/02/Pi-Day-Inspired-Hacking).
+Pi-cision Shooting is a Raspberry Pi powered hockey accuracy shooting competition. Players compete to see who can knock back targets mounted in each corner of a hockey goal the quickest. The GPIO pins on the Raspberry Pi are connected to a [Magnetic Door Switch Set](https://www.sparkfun.com/products/13247) mounted on each target so that it is able to monitor when a target has been hit. A full parts list and a description of the project itself can be found in [this blog post](https://www.asdfpublishing.com/single-post/2017/04/02/Pi-Day-Inspired-Hacking).
 
 <img src="https://static.wixstatic.com/media/6361c8_16d7a1cb887945a4beb1a1fde07af10f~mv2.png/v1/fill/w_1200,h_800,al_c/6361c8_16d7a1cb887945a4beb1a1fde07af10f~mv2.png" height="240">
 
