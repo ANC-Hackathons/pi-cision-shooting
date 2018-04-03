@@ -3,6 +3,10 @@ Pi-cision Shooting is a Raspberry Pi powered hockey accuracy shooting competitio
 
 <img src="https://static.wixstatic.com/media/6361c8_16d7a1cb887945a4beb1a1fde07af10f~mv2.png/v1/fill/w_1200,h_800,al_c/6361c8_16d7a1cb887945a4beb1a1fde07af10f~mv2.png" height="240">
 
+## Accolades
+
+Pi-cision Shooting earned the title of Most Creative during the 2017 ReadyTalk Pi Day Hackathon
+
 ## Install Dependencies
     pip install -r requirements.txt
 
